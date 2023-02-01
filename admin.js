@@ -7,6 +7,7 @@ const EmailEl2 = document.getElementById("Email");
 const AdressEl2 = document.getElementById("Adress");
 
 
+
 //---DELETE---
 //Removing user or order if needed
 function remove(name){
@@ -26,46 +27,52 @@ function remove(name){
 
 
     //---PATCH---
-    //Updating information or order if needed
+    //Updating information or order if needed, make update work!
     function update(name){
 
     //Getting user information from form
     const Name = NameEl2.value;
     const Email = EmailEl2.value;
     const Adress = AdressEl2.value;
-    // const idProducts = arrayItems;
     
-    
-    const body = JSON.stringify(
-            {
-                "fields": {
-                    "Adress": {
-                      "stringValue": Adress
-                    },
-                    "Name": {
-                      "stringValue": Name
-                    },
-                    "Email": {
-                      "stringValue": Email
-                    } //this gives issues, solve the 400 error
-                    // "idProducts": {
-                    //   "arrayValue": {
-                    //     "values": idProducts
-                    //   }
-                    // }
-      
-                }
-          
-                
+
+    const allArrayItems = arrayItems.map(items => {
+        return {"stringValue": items.id}
+      });
+
+      const allData ={
+        
+        "fields": {
+          "Adress": {
+            "stringValue": Adress
+          },
+          "Name": {
+            "stringValue": Name
+          },
+          "Email": {
+            "stringValue": Email
+          }, 
+          "idProducts": {
+            "arrayValue": {
+              "values":  {
+                allArrayItems  
+                 }      
             }
-        )
+          }
+
+      }
+    }
+    
+    
+    
     
         fetch("https://firestore.googleapis.com/v1/" + name,{
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: body
+            body: JSON.stringify(allData)
+           
         })
             .then(res => res.json())
             .then(data => console.log(data));
@@ -83,34 +90,33 @@ fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(defa
 
 function myCart(data){
 
+
     console.log(data);
 
-    let myChartContent = data.documents;
-    
+    let myCartContent = data.documents;
     
 
-    for (let i = 0; i < myChartContent.length; i++) {
+    for (let i = 0; i < myCartContent.length; i++) {
 
-        // <h4>${myChartContent[i].title}</h4>
-        // <img class="img"src=${myChartContent[i].image} alt=""><br></br>
-        // <strong>$${myChartContent[i].price}</strong>
-        
-        // <p>id: ${myChartContent[i].name}</p>
-     
-        // <p>Products: ${myChartContent[i].fields.idProducts.stringValue}</p>
+      
 
       allChoosenProductsEl.innerHTML += 
         
         `
         <hr>
         <article>
-        <h4>Name: ${myChartContent[i].fields.Name.stringValue}</h4>
-        <p>Email: ${myChartContent[i].fields.Email.stringValue}</p>
-        <p>Adress: ${myChartContent[i].fields.Adress.stringValue}</p>
+        <p>id: ${myCartContent[i].name}</p>
+        <h4>Name: ${myCartContent[i].fields.Name.stringValue}</h4>
+        <p>Email: ${myCartContent[i].fields.Email.stringValue}</p>
+        <p>Adress: ${myCartContent[i].fields.Adress.stringValue}</p>
+
+            
+        <p>Shipping: ${myCartContent[i].fields.Shipping.stringValue}</p>
+        <p>${"Product id: " + myCartContent[i].fields.idProducts.arrayValue.values.map(values=>values.stringValue)}</p> 
         
         
-        <input class="button" type="button" value="Remove" id="removeButton" onclick="remove('${myChartContent[i].name}')">
-        <input class="button" type="button" value="Update" id="updateButton" onclick="update('${myChartContent[i].name}')">
+        <input class="button" type="button" value="Remove" id="removeButton" onclick="remove('${myCartContent[i].name}')">
+        <input class="button" type="button" value="Update" id="updateButton" onclick="update('${myCartContent[i].name}')">
         </article>
         </hr>
 

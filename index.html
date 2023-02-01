@@ -75,7 +75,17 @@
 
     </section>
 
-<!--    
+    <!-- LocalStorage -->
+    <section id="localStorage">
+
+    </section>
+    <br><br>
+
+    <section id="localStorage2">
+
+    </section>
+
+   
     <br><br>
     <form id="login">
         <hr> 
@@ -94,22 +104,17 @@
         <input type="text" name="Adress" id="Adress" placeholder="Enter your Adress..." required>
         <br><br>
 
-        <label  for="Shipping1">Choose your shipping method:</label>
-        <br><br>
-        <input type="radio" name="Shipping" id="Shipping1"value="FedEx" required>
-        <label for="Shipping1">FedEx Express: (Free shipping, today between 9pm-11pm)</label>
-        <br>
-        <input type="radio" name="Shipping" id="Shipping2" value="Ups">
-        <label for="Shipping2">Ups: (Standard, between 1-7 workdays)</label>
-        <br>
-        <input type="radio" name="Shipping" id="Shipping3" value="DHL" >
-        <label for="Shipping3">DHL Express: (Free shipping, between 2 workdays)</label>
-        <br>
-        <input type="radio" name="Shipping" id="Shipping4" value="EasyPost" >
-        <label for="Shipping4">EasyPost: (Standard, between 2-3 weeks)</label>
+        <select name="delivery" id="Shipping">
+            <option value="" disabled selected>Delivery</option required>
+            <option value="Fedex Express (standard delivery)">Fedex</option>
+            <option value="UPS (Arriving between 9-11 PM today)">UPS</option>
+            <option value="DHL Express (Arriving between 2-3 days)">DHL Express</option>
+            <option value="EasyPost (Arriving between 2-3 weeks)">EasyPost</option>
+        </select>
+
         <br><br>
         <input id="submitButton" type="button"  value="Submit" disabled="disabled">
-    </form>  -->
+    </form> 
 
     <script src="app.js"></script>
 </body>

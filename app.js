@@ -3,17 +3,14 @@
 //Get the class/id from HTML and make them to variables
 const sectionEl = document.getElementById("section");
 const containerEl = document.getElementsByClassName("container");
-// const NameEl = document.getElementById("Name");
-// const EmailEl = document.getElementById("Email");
-// const AdressEl = document.getElementById("Adress");
-// const buttonEl = document.getElementById("submitButton");
+const NameEl = document.getElementById("Name");
+const EmailEl = document.getElementById("Email");
+const AdressEl = document.getElementById("Adress");
+const buttonEl = document.getElementById("submitButton");
 const id = document.getElementById("id");
 
-// const loginEl = document.getElementById("login");
-// const radio1El = document.getElementById("Shipping1").defaultChecked;
-// const radio2El = document.getElementById("Shipping2").defaultChecked;
-// const radio3El = document.getElementById("Shipping3").defaultChecked;
-// const radio4El = document.getElementById("Shipping4").defaultChecked;
+const loginEl = document.getElementById("login");
+const deliveryEl = document.getElementById("Shipping");
 
 //Do i need these four?
 const womenEl = document.getElementsByClassName("women");
@@ -27,6 +24,8 @@ const electronicSectionEl = document.getElementById("electronicSection");
 
 const all = document.getElementsByClassName("all");
 const jewelryButtonEl = document.getElementById("jewelryButton");
+
+
 
 
 
@@ -179,26 +178,23 @@ function electronics(outel) {
 
 
 
-// //Makes sure the form has values before it is sent
-// loginEl.addEventListener('input',() => {
+// //Makes sure the form has values before it is sent, fix this more
+loginEl.addEventListener('input',() => {
 
 
-//   if(
-//     NameEl.value.length > 0 &&
-//     EmailEl.value.length > 0 &&
-//     AdressEl.value.length > 0 &&
-//     document.getElementById("Shipping1").checked ||
-//     document.getElementById("Shipping2").checked ||
-//     document.getElementById("Shipping3").checked ||
-//     document.getElementById("Shipping4").checked
+  if(
+    NameEl.value.length > 0 &&
+    EmailEl.value.length > 0 &&
+    AdressEl.value.length > 0 &&
+    document.getElementById("Shipping").value
     
-//    ){
-//     buttonEl.removeAttribute('disabled');
-//     }else{
-//       buttonEl.setAttribute('disabled','disabled');
-//     }
+   ){
+    buttonEl.removeAttribute('disabled');
+    }else{
+      buttonEl.setAttribute('disabled','disabled');
+    }
 
-// });
+});
 
 
 
@@ -218,6 +214,7 @@ out.innerHTML = countsClick;
 
 
 //For counting all the prices of the products, add this function ta all other funktions
+//Put this in checkout
 let price = 0;
 
 function yourTotalCost(){
@@ -238,88 +235,113 @@ function yourTotalCost(){
 
 //Making a array and push the products into it
 //as well as converting it to JSON with stringlify 
+
 let arrayItems = [];
+
 
 function addToCart(id, title, image, price) {
 
-const object = {"id":id, "title": title, "image":image, "price": price};
+  arrayItems.push({
+    id,
+    title,
+    image,
+    price,
+  });
 
-arrayItems.push(object);
+  let local = JSON.stringify(arrayItems);
 
-// console.log(arrayItems);
+  localStorage.setItem("products", local);
 
-let array = JSON.stringify(object);
-console.log(array);
+  // console.log(arrayItems);
+
+
+  // location.reload();
+
+  if (localStorage.products) {
+
+    let local = localStorage.getItem("products");
+    let arrayItems = JSON.parse(local);
+
+    console.log(arrayItems);
+
+    // localStorageEl.innerHTML = "<br> " + save;
+    // localStorage2El.innerHTML = local;
+
+  }
+  
 }
 
 
 
-// //---POST---
-// //Funktion POST (create), add user and product information
-// function buy(){
+//---POST---
+//Funktion POST (create), add user and product information
+function buy(){
  
 
 
+  //Get the user data from contact form and products chosen
+  const Name = NameEl.value;
+  const Email = EmailEl.value;
+  const Adress = AdressEl.value;
+  const delivery = deliveryEl.value;
+  // const idProducts = arrayItems;
 
-//     //Get the user data from contact form and products chosen
-//     const Name = NameEl.value;
-//     const Email = EmailEl.value;
-//     const Adress = AdressEl.value;
-//     const idProducts = arrayItems;
-
-//     // console.log(idProducts);
-    
-//   //   const arrayItems = arrayItems.map(arrayItems => {
-//   //     return {"stringValue": arrayItems.id}
-//   // });
-
-//     //Put user values to JSON-object
-//     let bodyVariable = JSON.stringify({
-    
-
-        
-//             "fields": {
-//               "Adress": {
-//                 "stringValue": Adress
-//               },
-//               "Name": {
-//                 "stringValue": Name
-//               },
-//               "Email": {
-//                 "stringValue": Email
-//               }, //this gives issues, solve the 400 error
-//               "idProducts": {
-//                 "arrayValue": {
-//                   "values": [
-//                       idProducts
-//                   ]
-//                 }
-//               }
-
-//           }
-    
-//     })
-
-   
-
-//     fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop",{
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         },
-//         body: bodyVariable
-//     })
+  // console.log(idProducts);
   
-    
-//         .then(res => res.json())
-//         .then(data => console.log(data));
-    
-//         console.log("Added in cart");
-//         console.log(bodyVariable);
-        
-//     }
+   const allArrayItems = arrayItems.map(items => {
+     return {"stringValue": items.id}
+   });
 
-//     buttonEl.addEventListener('click', buy);
+  //Put user values to JSON-object
+  // let bodyVariable = JSON.stringify({
+  
+   const allData ={
+      
+          "fields": {
+            "Adress": {
+              "stringValue": Adress
+            },
+            "Name": {
+              "stringValue": Name
+            },
+            "Email": {
+              "stringValue": Email
+            }, 
+            "Shipping": {
+              "stringValue": delivery
+            },
+            "idProducts": {
+              "arrayValue": {
+                "values": 
+                allArrayItems                  
+              }
+            }
+
+        }
+      }
+ 
+ 
+
+  fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop",{
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(allData)
+      // bodyVariable
+  })
+
+  
+      .then(res => res.json())
+      .then(data => console.log(data));
+  
+      console.log("Your order has been sent!");
+      console.log(allData);
+      // console.log(bodyVariable);
+      
+  }
+
+  buttonEl.addEventListener('click', buy);
 
 
 
