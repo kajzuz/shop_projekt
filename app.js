@@ -178,7 +178,7 @@ function electronics(outel) {
 
 
 
-// //Makes sure the form has values before it is sent, fix this more
+//Makes sure the form has values before it is sent, fix this more
 loginEl.addEventListener('input',() => {
 
 

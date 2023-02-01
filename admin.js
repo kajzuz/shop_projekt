@@ -5,6 +5,8 @@ const allChoosenProductsEl = document.getElementById("allChoosenProducts");
 const NameEl2 = document.getElementById("Name");
 const EmailEl2 = document.getElementById("Email");
 const AdressEl2 = document.getElementById("Adress");
+const ProductIdsEl = document.getElementById("ProductIds");
+const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
 
 
@@ -34,14 +36,13 @@ function remove(name){
     const Name = NameEl2.value;
     const Email = EmailEl2.value;
     const Adress = AdressEl2.value;
+    const productId = ProductIdsEl.value;
+    const deliveryAdmin = ShippingAdminEl.value;
     
 
-    const allArrayItems = arrayItems.map(items => {
-        return {"stringValue": items.id}
-      });
 
-      const allData ={
-        
+      const body = JSON.stringify({
+      
         "fields": {
           "Adress": {
             "stringValue": Adress
@@ -52,16 +53,21 @@ function remove(name){
           "Email": {
             "stringValue": Email
           }, 
+          "Shipping": {
+            "stringValue": deliveryAdmin
+          },
           "idProducts": {
             "arrayValue": {
-              "values":  {
-                allArrayItems  
-                 }      
+              "values": [{
+                "stringValue": productId
+              },
+            ] 
+                                
             }
           }
 
       }
-    }
+    })
     
     
     
@@ -71,7 +77,7 @@ function remove(name){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(allData)
+            body: body
            
         })
             .then(res => res.json())

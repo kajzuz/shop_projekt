@@ -38,6 +38,20 @@
         <br>
         <input type="text" name="Adress" id="Adress" placeholder="Enter your Adress..." required>
         <br><br>
+        <label for="ProductIds">Id:</label>
+        <br>
+        <input type="text" name="ProductId" id="ProductIds" placeholder="Enter id here...">
+        <br><br>
+
+        <label for="Shipping">Delivery way:</label>
+        <br>
+        <select name="delivery" id="ShippingAdmin">
+            <option value="" disabled selected>Delivery</option required>
+            <option value="Fedex Express (standard delivery)">Fedex</option>
+            <option value="UPS (Arriving between 9-11 PM today)">UPS</option>
+            <option value="DHL Express (Arriving between 2-3 days)">DHL Express</option>
+            <option value="EasyPost (Arriving between 2-3 weeks)">EasyPost</option>
+        </select>
     </form>
 
     <!-- The container for all information in js that is printed out on the webbsite -->
