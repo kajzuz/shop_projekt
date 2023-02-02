@@ -202,6 +202,41 @@
         justify-content: center;
     }
 
-    
+    .buttonReduce{
+        border-radius: 15%;
+        font-size: large;
+        border:#dda0dd;
+        background-color: plum;
+        color: whitesmoke;
+    }
+
+    .buttonIncrease{
+        border-radius: 15%;
+        font-size: large;
+        border:#dda0dd;
+        background-color: plum;
+        color: whitesmoke;
+    }
+
+    .buttonBuy{
+        padding: 20px 15px;
+        width: 100%;
+        border-radius: 10%;
+        font-size: large;
+        color: whitesmoke;
+        border:#dda0dd;
+        background-color: plum;
+    }
+
+    .divCheckout{
+       display: flex;
+       justify-content: center;
+       margin-top: 10%;
+       
+    }
+
+    .endText{
+     text-align: center;
+    }
 
 }

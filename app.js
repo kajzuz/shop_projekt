@@ -24,6 +24,7 @@ const electronicSectionEl = document.getElementById("electronicSection");
 
 const all = document.getElementsByClassName("all");
 const jewelryButtonEl = document.getElementById("jewelryButton");
+const localStorage2El = document.getElementById("localStorage2");
 
 
 
@@ -193,11 +194,12 @@ loginEl.addEventListener('input',() => {
     }else{
       buttonEl.setAttribute('disabled','disabled');
     }
-
+    
 });
 
 
 
+//Make amount of products be saved in cart, when refreshing the site
 
 
 
@@ -252,22 +254,11 @@ function addToCart(id, title, image, price) {
 
   localStorage.setItem("products", local);
 
-  // console.log(arrayItems);
-
+  console.log(arrayItems);
+        
 
   // location.reload();
 
-  if (localStorage.products) {
-
-    let local = localStorage.getItem("products");
-    let arrayItems = JSON.parse(local);
-
-    console.log(arrayItems);
-
-    // localStorageEl.innerHTML = "<br> " + save;
-    // localStorage2El.innerHTML = local;
-
-  }
   
 }
 
@@ -284,16 +275,12 @@ function buy(){
   const Email = EmailEl.value;
   const Adress = AdressEl.value;
   const delivery = deliveryEl.value;
-  // const idProducts = arrayItems;
-
-  // console.log(idProducts);
+  
   
    const allArrayItems = arrayItems.map(items => {
      return {"stringValue": items.id}
    });
 
-  //Put user values to JSON-object
-  // let bodyVariable = JSON.stringify({
   
    const allData ={
       
@@ -328,7 +315,6 @@ function buy(){
           'Content-Type': 'application/json'
       },
       body: JSON.stringify(allData)
-      // bodyVariable
   })
 
   
@@ -376,7 +362,7 @@ function myFunction(output){
         <p> Description: ${all[i].description}</p>
         <strong>$${all[i].price}</strong>
         <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
-        onclick="addToCart('${all[i].id}', '${all[i].title}', '${all[i].image}', '${all[i].price}'); count(); yourTotalCost()"></p>
+        onclick="addToCart('${all[i].id}', '${all[i].title.replace("'","")}', '${all[i].image}', '${all[i].price}'); count(); yourTotalCost()"></p>
         <strong><br>id:${all[i].id}</strong>
         </article>
 
