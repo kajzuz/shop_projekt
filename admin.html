@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <title>Shop</title>
 </head>
-<body>
+<body class="bodyAdmin">
     <header class="admin">
         <h1>
             <a href="index.html">
@@ -16,14 +16,11 @@
         </h1>
     </header>
 
-    <h2>
-        Admin
-    </h2>
+    <br><br>
 
-
+    <div class="parentAdmin">
     <!-- The form on admin site for user to update information -->
-    <form>
-        <hr> 
+    <form class="formAdmin"> 
         <strong>Update your information:</strong>
         <br><br>
         <label for="Name">Name:</label>
@@ -38,7 +35,7 @@
         <br>
         <input type="text" name="Adress" id="Adress" placeholder="Enter your Adress..." required>
         <br><br>
-        <label for="ProductIds">Id:</label>
+        <label for="ProductIds">Product Id:</label>
         <br>
         <input type="text" name="ProductId" id="ProductIds" placeholder="Enter id here...">
         <br><br>
@@ -53,11 +50,17 @@
             <option value="EasyPost (Arriving between 2-3 weeks)">EasyPost</option>
         </select>
     </form>
+    </div>
 
+
+    <br><br>
     <!-- The container for all information in js that is printed out on the webbsite -->
+    <div class="sectionAdmin">
     <section id="allChoosenProducts">
+    
 
     </section>
+    </div>
 
 
 

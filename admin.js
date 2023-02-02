@@ -109,8 +109,8 @@ function myCart(data){
       allChoosenProductsEl.innerHTML += 
         
         `
-        <hr>
-        <article>
+      
+        <article class="adminJs">
         <p>id: ${myCartContent[i].name}</p>
         <h4>Name: ${myCartContent[i].fields.Name.stringValue}</h4>
         <p>Email: ${myCartContent[i].fields.Email.stringValue}</p>
@@ -124,7 +124,7 @@ function myCart(data){
         <input class="button" type="button" value="Remove" id="removeButton" onclick="remove('${myCartContent[i].name}')">
         <input class="button" type="button" value="Update" id="updateButton" onclick="update('${myCartContent[i].name}')">
         </article>
-        </hr>
+        
 
         `
 

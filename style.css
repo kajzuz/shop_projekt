@@ -41,7 +41,7 @@
 
     .article{
         width: 27%;
-        box-shadow: 0 0 6px 3px #999;
+        box-shadow: 0 0 6px 3px #dda0dd;
         text-align: center;
         margin-bottom: 5em;
         border-radius: 5px;
@@ -174,6 +174,33 @@
         border-radius: 5%;
     }
 
+    .parentAdmin{
+        display: flex;
+        justify-content: center;
+    }
+
+    .formAdmin{
+        border-radius: 5%;
+        width: 100%;
+        background-color: #dda0dd;
+        text-align: center;
+       
+    }
+
+   .adminJs{
+        
+        text-align: center;
+
+        width: 110%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        margin-bottom: 5em;
+        border-radius: 15px;
+    }
+    
+    .sectionAdmin{
+        display: flex;
+        justify-content: center;
+    }
 
     
 
