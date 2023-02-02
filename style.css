@@ -202,21 +202,6 @@
         justify-content: center;
     }
 
-    .buttonReduce{
-        border-radius: 15%;
-        font-size: large;
-        border:#dda0dd;
-        background-color: plum;
-        color: whitesmoke;
-    }
-
-    .buttonIncrease{
-        border-radius: 15%;
-        font-size: large;
-        border:#dda0dd;
-        background-color: plum;
-        color: whitesmoke;
-    }
 
     .buttonBuy{
         padding: 20px 15px;
@@ -239,4 +224,28 @@
      text-align: center;
     }
 
+    .totalPrice{
+     font-size: large;
+    }
+
+    #sectionC{
+        text-align: center;
+        /* display: flex;
+        justify-content: right;
+        flex-direction: column; */
+        
+    }
+
+    .h2Checkout{
+        text-align: center;
+    }
+
+    .articleCheckout{
+        text-align: center;
+        
+        width: 20%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        margin-bottom: 5em;
+        border-radius: 15px;
+    }
 }
