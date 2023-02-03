@@ -87,13 +87,13 @@ function remove(name){
         }
 
 
-
-//All content from cart, make this print out all that is store in the cart
 fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop")
 .then(result => result.json())
 .then(data => myCart(data));
 
 
+
+//All content orders from API, make this print out all that is stored in the API (database)
 function myCart(data){
 
 
@@ -101,6 +101,7 @@ function myCart(data){
 
     let myCartContent = data.documents;
     
+    // myCartContent[i].fields.idProducts.arrayValue.values.map(values=>values.stringValue)
 
     for (let i = 0; i < myCartContent.length; i++) {
 
