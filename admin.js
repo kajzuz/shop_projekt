@@ -1,6 +1,6 @@
 "use strict";
 
-//Get the class/id from HTML and make them to variables
+//Get the class/id from HTML and make them to variables with the help of selectors
 const allChoosenProductsEl = document.getElementById("allChoosenProducts");
 const NameEl2 = document.getElementById("Name");
 const EmailEl2 = document.getElementById("Email");
@@ -10,9 +10,11 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
 
 
+
+
 //---DELETE---
-//Removing user or order if needed
-function remove(name){
+  //Removing user or order if needed
+  function remove(name){
 
 
     fetch("https://firestore.googleapis.com/v1/" + name,{
@@ -29,7 +31,7 @@ function remove(name){
 
 
     //---PATCH---
-    //Updating information or order if needed, make update work!
+    //Updating order if needed
     function update(name){
 
     //Getting user information from form
@@ -93,9 +95,10 @@ fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(defa
 
 
 
+
 //All content orders from API, make this print out all that is stored in the API (database)
 function myCart(data){
-
+  
 
     console.log(data);
 
@@ -112,14 +115,15 @@ function myCart(data){
         `
       
         <article class="adminJs">
-        <p>id: ${myCartContent[i].name}</p>
-        <h4>Name: ${myCartContent[i].fields.Name.stringValue}</h4>
-        <p>Email: ${myCartContent[i].fields.Email.stringValue}</p>
-        <p>Adress: ${myCartContent[i].fields.Adress.stringValue}</p>
+        <strong>Order id: <br></strong> ${myCartContent[i].name} <br><br>
+        <strong>Name: </strong>${myCartContent[i].fields.Name.stringValue}<br><br>
+        <strong>Email: </strong> ${myCartContent[i].fields.Email.stringValue}<br><br>
+        <strong>Adress: </strong>${myCartContent[i].fields.Adress.stringValue}<br><br>
 
             
-        <p>Shipping: ${myCartContent[i].fields.Shipping.stringValue}</p>
-        <p>${"Product id: " + myCartContent[i].fields.idProducts.arrayValue.values.map(values=>values.stringValue)}</p> 
+        <strong>Product id: </strong> ${myCartContent[i].fields.idProducts.arrayValue.values.map(values=>values.stringValue)}
+        <br><br>
+        <strong>Shipping: </strong>${myCartContent[i].fields.Shipping.stringValue}<br><br>
         
         
         <input class="button" type="button" value="Remove" id="removeButton" onclick="remove('${myCartContent[i].name}')">

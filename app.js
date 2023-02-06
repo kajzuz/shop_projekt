@@ -1,6 +1,6 @@
 "use strict";
 
-//Get the class/id from HTML and make them to variables
+//Get the class/id from HTML and make them to variables with the help of selectors
 const sectionEl = document.getElementById("section");
 const containerEl = document.getElementsByClassName("container");
 const NameEl = document.getElementById("Name");
@@ -10,17 +10,7 @@ const buttonEl = document.getElementById("submitButton");
 const id = document.getElementById("id");
 
 const loginEl = document.getElementById("login");
-const deliveryEl = document.getElementById("Shipping");
-
-//Do i need these four?
-// const womenEl = document.getElementsByClassName("women");
-// const jewelry2El = document.getElementById("jewelry2");
-// const manEl = document.getElementsByClassName("man");
-// const electronicsEl = document.getElementsByClassName("electronics");
-
-const womenSectionEl = document.getElementById("womenSection");
-const menSectionEl = document.getElementById("menSection");
-const electronicSectionEl = document.getElementById("electronicSection");
+const shippingEl = document.getElementById("Shipping");
 
 const all = document.getElementsByClassName("all");
 const jewelryButtonEl = document.getElementById("jewelryButton");
@@ -28,12 +18,24 @@ const localStorage2El = document.getElementById("localStorage2");
 
 const out = document.getElementById("counter");
 
+const allEl = document.getElementsByClassName("all");
+const MensClothingEl = document.getElementsByClassName("Men's clothing");
+const WomensClothingEl = document.getElementsByClassName("Womens's clothing");
+const JewelryEl = document.getElementsByClassName("Jewelry");
+const EleclectronicEl = document.getElementsByClassName("Eleclectronic");
+
+const jewelry2El = document.getElementById("jewelry2");
+const womenSectionEl = document.getElementById("womenSection");
+const menSectionEl = document.getElementById("menSection");
+const electronicSectionEl = document.getElementById("electronicSection");
+
 
 
 
 
 
 //Makes sure the form has values before it is sent
+//'input' to specify input form
 loginEl.addEventListener('input',() => {
 
 
@@ -70,8 +72,7 @@ loginEl.addEventListener('input',() => {
 // count();
 
 
-//For counting all the prices of the products, add this function ta all other funktions
-//Put this in checkout
+//For counting all the prices of the products, add this function ta all other functions
 let price = 0;
 
 function yourTotalCost(){
@@ -83,8 +84,6 @@ function yourTotalCost(){
     
     
   }
-  
-
   console.log("Total Price " + price.toFixed(2));
 
 }
@@ -94,14 +93,13 @@ function yourTotalCost(){
 //as well as converting it to JSON with stringlify 
 let arrayItems = JSON.parse(localStorage.getItem("products")) || []
 
-
 function addToCart(id, title, image, price) {
 
   arrayItems.push({
-    id,
-    title,
-    image,
-    price,
+   "id": id,
+   "title": title,
+   "image": image,
+   "price": price,
   });
 
   let local = JSON.stringify(arrayItems);
@@ -111,9 +109,9 @@ function addToCart(id, title, image, price) {
   console.log(arrayItems);
         
   count();
-
-  // location.reload();
 }
+
+
 
 
 //For cart counting, and saving in localstorage
@@ -129,6 +127,8 @@ function count() {
 count();
 
 
+
+
 //---POST---
 //Funktion POST (create), add user and product information (AJAX)
 function buy(){
@@ -139,11 +139,13 @@ function buy(){
   const Name = NameEl.value;
   const Email = EmailEl.value;
   const Adress = AdressEl.value;
-  const delivery = deliveryEl.value;
+  const shipping = shippingEl.value;
   
-  //allArrayItems gets the value of every items id from the original arrayItems 
-   const allArrayItems = arrayItems.map(items => {
-     return {"stringValue": items.id}
+  //allArrayItems gets the value of every id from the original array
+  //Save our users values as a object in our variable myFieldData that we later convert to 
+  //string format so we can save it in the database
+   const allArrayItems = arrayItems.map(product => {
+     return {"stringValue": product.id}
    });
 
   
@@ -160,7 +162,7 @@ function buy(){
               "stringValue": Email
             }, 
             "Shipping": {
-              "stringValue": delivery
+              "stringValue": shipping
             },
             "idProducts": {
               "arrayValue": {
@@ -182,22 +184,156 @@ function buy(){
       body: JSON.stringify(myFieldData)
   })
 
-  
+      //Handels the answer from the API
       .then(res => res.json())
       .then(data => console.log(data));
   
       console.log("Your order has been sent!");
       console.log(myFieldData);
-      // console.log(bodyVariable);
+
+      localStorage.clear();
       
   }
 
   buttonEl.addEventListener('click', buy);
 
 
+  
+  //All fetch for all categorys
 
-//   .then(result => result.json())
-// .then(data => myFunction(data));
+
+  //Men's clothing
+  fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+  .then(result => result.json())
+  .then(data => MensClothing(data));
+
+  function MensClothing(output) {
+
+    menSectionEl.classList.toggle("menCss");
+    
+    for (let i = 0; i < output.length; i++) {
+
+      menSectionEl.innerHTML += 
+      
+      `
+      <article class="article">
+      <h2>${output[i].title}</h2>
+      <img class="img"src=${output[i].image} alt="">
+      <br><br>
+      <b>${output[i].category}</b>
+      <p> Description: ${output[i].description}</p>
+      <strong>$${output[i].price}</strong>
+      <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
+      onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
+      <strong><br>id:${output[i].id}</strong>
+      </article>
+
+      `
+
+  }
+
+  }
+
+  
+
+  //Women's clothing
+  fetch("https://fakestoreapi.com/products/category/women's%20clothing")
+  .then(result => result.json())
+  .then(data => WomensClothing(data));
+
+  function WomensClothing(output) {
+
+    womenSectionEl.classList.toggle("womenCss");
+    
+    for (let i = 0; i < output.length; i++) {
+
+      womenSectionEl.innerHTML += 
+      
+      `
+      <article class="article">
+      <h2>${output[i].title}</h2>
+      <img class="img"src=${output[i].image} alt="">
+      <br><br>
+      <b>${output[i].category}</b>
+      <p> Description: ${output[i].description}</p>
+      <strong>$${output[i].price}</strong>
+      <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
+      onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
+      <strong><br>id:${output[i].id}</strong>
+      </article>
+
+      `
+
+  }
+
+  }
+
+
+
+  //Jewelry
+  fetch('https://fakestoreapi.com/products/category/jewelery')
+  .then(result => result.json())
+  .then(data => Jewelry(data));
+
+  function Jewelry(output) {
+
+    jewelry2El.classList.toggle("jewelryCss");
+    
+    for (let i = 0; i < output.length; i++) {
+
+      jewelry2El.innerHTML += 
+      
+      `
+      <article class="article">
+      <h2>${output[i].title}</h2>
+      <img class="img"src=${output[i].image} alt="">
+      <br><br>
+      <b>${output[i].category}</b>
+      <p> Description: ${output[i].description}</p>
+      <strong>$${output[i].price}</strong>
+      <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
+      onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
+      <strong><br>id:${output[i].id}</strong>
+      </article>
+
+      `
+
+  }
+
+  }
+
+
+  //Electronics
+  fetch('https://fakestoreapi.com/products/category/electronics')
+  .then(result => result.json())
+  .then(data => Electronics(data));
+
+  function Electronics(output) {
+
+    electronicSectionEl.classList.toggle("elCss");
+    
+    for (let i = 0; i < output.length; i++) {
+
+      electronicSectionEl.innerHTML += 
+      
+      `
+      <article class="article">
+      <h2>${output[i].title}</h2>
+      <img class="img"src=${output[i].image} alt="">
+      <br><br>
+      <b>${output[i].category}</b>
+      <p> Description: ${output[i].description}</p>
+      <strong>$${output[i].price}</strong>
+      <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
+      onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
+      <strong><br>id:${output[i].id}</strong>
+      </article>
+
+      `
+
+  }
+
+  }
 
 
 
@@ -206,36 +342,15 @@ function buy(){
 //GET (Read), reading in all information from the fakeshop API, and adding to chart
 //and setting them to categories
 fetch("https://fakestoreapi.com/products")
-.then(res => res.json())
-.then(data => {
-    let differentButtons = document.getElementsByClassName("catergory");
-    for (let i = 0; i < differentButtons.length; i++) {
-      differentButtons[i].addEventListener("click", function () {
-          myFunction(data, this.getAttribute("Allcategory"));
-        });
-    }
-    myFunction(data, "all");
-});
+.then(result => result.json())
+.then(data => myFunction(data));
 
 
-function myFunction(output, selectedCategory){
+function myFunction(output){
 
   console.log(output);
 
-  // let all = output;
-
- // filters out the category we want
-  const all = output.filter(all => {
-    if (selectedCategory === "all") {
-        return true;
-    } else if (selectedCategory === all.category) {
-        return true;
-    }
-    return false;
-  });
-  //Resets the category
-  sectionEl.innerHTML = "";
-  
+  let all = output;
 
    
   // count();
