@@ -27,7 +27,9 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
         
         console.log("Deleted!");
         
-        location.reload();
+        setTimeout(function(){
+          location.reload();
+      }, 300);
     
     }
 
@@ -88,11 +90,13 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             .then(res => res.json())
             .then(data => console.log(data))
             .catch(error =>console.log(error));
+            
             console.log("Updated");
 
-            setTimeout(() => {
-            location.reload();
-            }, 400);
+           
+        setTimeout(function(){
+          location.reload();
+        }, 300);
         
     
         }

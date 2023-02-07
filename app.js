@@ -40,7 +40,7 @@ loginEl.addEventListener('input',() => {
 
   if(
     NameEl.value.length > 0 &&
-    EmailEl.value.length > 0 &&
+    EmailEl.value.length > 0 && 
     AdressEl.value.length > 0 && 
     document.getElementById("Shipping").value
     
@@ -52,8 +52,6 @@ loginEl.addEventListener('input',() => {
     }
     
 });
-
-
 
 
 //For counting all the prices of the products 
@@ -98,22 +96,40 @@ function addToCart(id, title, image, price) {
 }
 
 
+//For cart counting, and saving in localstorage
+let countsClick = 0;
+const out = document.getElementById("counter");
+
+function count(){
+ 
+  countsClick++;
+
+    
+  for (let i = 0; i < arrayItems.length; i++) {
+
+          out.innerHTML = arrayItems.length;
+    }
+
+}
+count();
+
+
 
 
 //For cart counting, and saving in localstorage
 // count(); saves all the products in the cart
-function count() {
+// function count() {
 
- const out = document.getElementById("counter");
+//  const out = document.getElementById("counter");
 
-  for (let i = 0; i < arrayItems.length; i++) {
+//   for (let i = 0; i < arrayItems.length; i++) {
 
-      out.innerHTML = arrayItems.length;
-  }
+//       out.innerHTML = arrayItems.length;
+//   }
   
-}
+// }
 
-count();
+// count();
 
 
 
