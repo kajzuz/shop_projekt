@@ -26,12 +26,12 @@ if (localStorage.products) {
     for (let i = 0; i < local.length; i++) {
       
       sectionCEl.innerHTML += `
-      <article class=articleCheckout>
+      <article class="articleCheckout">
       <br>
       <b>${local[i].title} </b><br><br> 
-      <img width=25% src= ${local[i].image} alt=""><br> 
+      <img width=25% src= '${local[i].image}' alt=""><br> 
       <strong>$ ${local[i].price} </strong> <br><br>
-      <img src="images/trashcanIcon.png" alt="traschcan icon"
+      <img class="iconTrash" src="images/trashcanIcon.png" alt="traschcan icon"
       <input class="buttonDeleteProduct" type="button" value="" id="removeButton" onclick="removeProduct(${i})">
       <br><br><br>
       </article>
@@ -42,14 +42,14 @@ if (localStorage.products) {
     }
 
   }else{
-    console.log("You don't have anything in your cart!");
+    sectionCEl.innerHTML = "<strong class='emptyText'>You have not added anything to your cart yet!</strong>"
   }
 
     sectionPriceEl.innerHTML += ` <h3> Your total price: </h3> <strong class="totalPrice">$ ${price.toFixed(2)} dollar </strong><br><br> 
     <input class="buttonBuy" type="button" value="Purchase" id="buyButton" onclick="buyAll()">
     `
   
-    //Removes products, and stores the new amountin localstorage set
+    //Removes product, and stores the new amount in localstorage
     function removeProduct(i) {
     
     console.log(local.splice(i,1));

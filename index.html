@@ -11,7 +11,7 @@
 
     <header>
         <h1>
-            <img src="images/logoShopup.png" alt="logog slogan" width="500px">
+            <img class="imageLogo" src="images/logoShopup.png" alt="logo slogan">
         </h1>
     </header>
    
@@ -46,7 +46,7 @@
                     <a href="#" class="Jewelry" onclick="Jewelry()">Jewelry</a>
                 </li>
                 <li>
-                    <a href="#" class="Eleclectronic" onclick="Electronics()">Eleclectronic</a>
+                    <a href="#" class="Eleclectronic" onclick="Electronics()">Electronic</a>
                 </li>
     </ul>
    </nav>
@@ -76,23 +76,16 @@
 
     </section>
 
-    <!-- LocalStorage -->
-    <section id="localStorage">
 
-    </section>
-    <br><br>
-
-    <section id="localStorage2">
-
-    </section>
-
+    <!-- Button to come to admin side -->
     <br><br>
     <a class="adminButton" href="admin.html">Admin side</a>
    
+    <!-- Form for input, with disabled on button, to require input in all forms -->
     <br><br>
     <form id="login">
         <hr> 
-        <strong>Fill in all the following information:</strong>
+        <strong>Enter all of the following information to place your order!</strong>
         <br><br>
         <label for="Name">Name:</label>
         <br>
@@ -108,11 +101,13 @@
         <br><br>
 
         <select name="delivery" id="Shipping">
-            <option value="" disabled selected>Shipping</option required>
+
+            <option value="" disabled selected>Shipping</option>
             <option value="Fedex Express (standard delivery)">Fedex</option>
             <option value="UPS (Arriving between 9-11 PM today)">UPS</option>
             <option value="DHL Express (Arriving between 2-3 days)">DHL Express</option>
             <option value="EasyPost (Arriving between 2-3 weeks)">EasyPost</option>
+
         </select>
 
         <br><br>

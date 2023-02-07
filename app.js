@@ -16,7 +16,6 @@ const all = document.getElementsByClassName("all");
 const jewelryButtonEl = document.getElementById("jewelryButton");
 const localStorage2El = document.getElementById("localStorage2");
 
-const out = document.getElementById("counter");
 
 const allEl = document.getElementsByClassName("all");
 const MensClothingEl = document.getElementsByClassName("Men's clothing");
@@ -42,12 +41,13 @@ loginEl.addEventListener('input',() => {
   if(
     NameEl.value.length > 0 &&
     EmailEl.value.length > 0 &&
-    AdressEl.value.length > 0 &&
+    AdressEl.value.length > 0 && 
     document.getElementById("Shipping").value
     
    ){
     buttonEl.removeAttribute('disabled');
-    }else{
+    }
+    else{
       buttonEl.setAttribute('disabled','disabled');
     }
     
@@ -56,23 +56,7 @@ loginEl.addEventListener('input',() => {
 
 
 
-
-
-//For cart counting
-// let countsClick = 0;
-// const out = document.getElementById("counter");
-
-// function count(){
-
-// countsClick++;
-// out.innerHTML = countsClick;
-
-// }
-
-// count();
-
-
-//For counting all the prices of the products, add this function ta all other functions
+//For counting all the prices of the products 
 let price = 0;
 
 function yourTotalCost(){
@@ -89,10 +73,12 @@ function yourTotalCost(){
 }
 
 
-//Making a array and push the products into it
-//as well as converting it to JSON with stringlify 
+//Getting localstorage to see if any products is stored there, 
+//other wise the array is empty
 let arrayItems = JSON.parse(localStorage.getItem("products")) || []
 
+//Making a array and push the products into it
+//as well as converting it to JSON with stringlify, and count function for cart
 function addToCart(id, title, image, price) {
 
   arrayItems.push({
@@ -118,10 +104,13 @@ function addToCart(id, title, image, price) {
 // count(); saves all the products in the cart
 function count() {
 
+ const out = document.getElementById("counter");
+
   for (let i = 0; i < arrayItems.length; i++) {
 
       out.innerHTML = arrayItems.length;
   }
+  
 }
 
 count();
@@ -186,7 +175,8 @@ function buy(){
 
       //Handels the answer from the API
       .then(res => res.json())
-      .then(data => console.log(data));
+      .then(data => console.log(data))
+      .catch(error =>console.log(error));
   
       console.log("Your order has been sent!");
       console.log(myFieldData);
@@ -198,25 +188,37 @@ function buy(){
   buttonEl.addEventListener('click', buy);
 
 
+
+
   
   //All fetch for all categorys
 
-
   //Men's clothing
-  fetch("https://fakestoreapi.com/products/category/men's%20clothing")
-  .then(result => result.json())
-  .then(data => MensClothing(data));
+  function MensClothing() {
 
-  function MensClothing(output) {
+    fetch("https://fakestoreapi.com/products/category/men's%20clothing")
+    .then(result => result.json())
+    .then(data => forLoopMens(data));
 
     menSectionEl.classList.toggle("menCss");
+
+  }
+
+  function forLoopMens(output) {
+    
+    sectionEl.innerHTML = "";
+   
+    menSectionEl.classList.toggle("menCss");
+
+    menSectionEl.innerHTML = "";
+
     
     for (let i = 0; i < output.length; i++) {
 
       menSectionEl.innerHTML += 
       
       `
-      <article class="article">
+      <article class="articleMens">
       <h2>${output[i].title}</h2>
       <img class="img"src=${output[i].image} alt="">
       <br><br>
@@ -226,31 +228,44 @@ function buy(){
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong><br>id:${output[i].id}</strong>
+      <strong><br>rating: ${output[i].rating.rate} / 5</strong>
+      <br><br>
       </article>
 
       `
-
   }
+  
 
   }
 
   
 
-  //Women's clothing
-  fetch("https://fakestoreapi.com/products/category/women's%20clothing")
-  .then(result => result.json())
-  .then(data => WomensClothing(data));
+   //Women's clothing
+  function WomensClothing() {
 
-  function WomensClothing(output) {
+    fetch("https://fakestoreapi.com/products/category/women's%20clothing")
+    .then(result => result.json())
+    .then(data => forLoopWomens(data));
+
+    
+    womenSectionEl.classList.toggle("womenCss");
+    
+
+  }
+
+  function forLoopWomens(output) {
+
+    sectionEl.innerHTML = "";
 
     womenSectionEl.classList.toggle("womenCss");
+    womenSectionEl.innerHTML ="";
     
     for (let i = 0; i < output.length; i++) {
 
       womenSectionEl.innerHTML += 
       
       `
-      <article class="article">
+      <article class="articleWomens">
       <h2>${output[i].title}</h2>
       <img class="img"src=${output[i].image} alt="">
       <br><br>
@@ -260,31 +275,41 @@ function buy(){
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong><br>id:${output[i].id}</strong>
+      <strong><br>rating: ${output[i].rating.rate} / 5</strong>
+      <br><br>
       </article>
 
       `
-
+  }
   }
 
-  }
 
 
-
+  
   //Jewelry
-  fetch('https://fakestoreapi.com/products/category/jewelery')
-  .then(result => result.json())
-  .then(data => Jewelry(data));
+  function Jewelry() {
 
-  function Jewelry(output) {
+    fetch('https://fakestoreapi.com/products/category/jewelery')
+    .then(result => result.json())
+    .then(data => forLoopJewelry(data));
 
     jewelry2El.classList.toggle("jewelryCss");
+
+  }
+
+  function forLoopJewelry(output) {
+
+    sectionEl.innerHTML = "";
+
+    jewelry2El.classList.toggle("jewelryCss");
+    jewelry2El.innerHTML = "";
     
     for (let i = 0; i < output.length; i++) {
 
       jewelry2El.innerHTML += 
       
       `
-      <article class="article">
+      <article class="articleJewelry">
       <h2>${output[i].title}</h2>
       <img class="img"src=${output[i].image} alt="">
       <br><br>
@@ -294,32 +319,43 @@ function buy(){
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong><br>id:${output[i].id}</strong>
+      <strong><br>rating: ${output[i].rating.rate} / 5</strong>
+      <br><br>
       </article>
 
       `
 
   }
-
   }
 
 
+ 
   //Electronics
-  fetch('https://fakestoreapi.com/products/category/electronics')
-  .then(result => result.json())
-  .then(data => Electronics(data));
-
   function Electronics(output) {
 
+    fetch('https://fakestoreapi.com/products/category/electronics')
+    .then(result => result.json())
+    .then(data => forLoopElectronics(data));
+
     electronicSectionEl.classList.toggle("elCss");
+
+  }
+
+  function forLoopElectronics(output) {
+
+    sectionEl.innerHTML = "";
+
+    electronicSectionEl.classList.toggle("elCss");
+    electronicSectionEl.innerHTML ="";
     
     for (let i = 0; i < output.length; i++) {
 
       electronicSectionEl.innerHTML += 
       
       `
-      <article class="article">
+      <article class="articleElectronic">
       <h2>${output[i].title}</h2>
-      <img class="img"src=${output[i].image} alt="">
+      <img class="img"src='${output[i].image}' alt="">
       <br><br>
       <b>${output[i].category}</b>
       <p> Description: ${output[i].description}</p>
@@ -327,20 +363,20 @@ function buy(){
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong><br>id:${output[i].id}</strong>
+      <strong><br>rating: ${output[i].rating.rate} / 5</strong>
+      <br><br>
       </article>
 
       `
 
   }
-
   }
 
 
 
 
 //---GET---
-//GET (Read), reading in all information from the fakeshop API, and adding to chart
-//and setting them to categories
+//GET (Read), reading in all information from the fakeshop API, and adding to cart
 fetch("https://fakestoreapi.com/products")
 .then(result => result.json())
 .then(data => myFunction(data));
@@ -351,9 +387,6 @@ function myFunction(output){
   console.log(output);
 
   let all = output;
-
-   
-  // count();
     
 
     for (let i = 0; i < all.length; i++) {
@@ -372,7 +405,9 @@ function myFunction(output){
         <strong>$${all[i].price}</strong>
         <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
         onclick="addToCart('${all[i].id}', '${all[i].title.replace("'","")}', '${all[i].image}', '${all[i].price}');  yourTotalCost()"></p>
-        <strong><br>id:${all[i].id}</strong>
+        <strong><br>id:${all[i].id}</strong><br><br>
+        <strong><br>rating: ${output[i].rating.rate} / 5</strong>
+        <br><br>
         </article>
 
         `

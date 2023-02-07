@@ -12,19 +12,22 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
 
 
-//---DELETE---
+  //---DELETE---
   //Removing user or order if needed
-  function remove(name){
+  function remove(id){
 
 
-    fetch("https://firestore.googleapis.com/v1/" + name,{
+    fetch("https://firestore.googleapis.com/v1/" + id,{
         method: 'DELETE'
     })
         
         .then(res => res.json())
-        .then(data => console.log(data));
+        .then(data => console.log(data))
+        .catch(error =>console.log(error));
         
         console.log("Deleted!");
+        
+        location.reload();
     
     }
 
@@ -32,7 +35,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
     //---PATCH---
     //Updating order if needed
-    function update(name){
+    function update(id){
 
     //Getting user information from form
     const Name = NameEl2.value;
@@ -74,7 +77,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
     
     
     
-        fetch("https://firestore.googleapis.com/v1/" + name,{
+        fetch("https://firestore.googleapis.com/v1/" + id,{
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json'
@@ -83,20 +86,25 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
            
         })
             .then(res => res.json())
-            .then(data => console.log(data));
+            .then(data => console.log(data))
+            .catch(error =>console.log(error));
             console.log("Updated");
+
+            setTimeout(() => {
+            location.reload();
+            }, 400);
+        
     
         }
 
 
+
+//All content orders from API, this print out all that is stored in the (database)
 fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop")
 .then(result => result.json())
 .then(data => myCart(data));
 
 
-
-
-//All content orders from API, make this print out all that is stored in the API (database)
 function myCart(data){
   
 
@@ -104,10 +112,10 @@ function myCart(data){
 
     let myCartContent = data.documents;
     
-    // myCartContent[i].fields.idProducts.arrayValue.values.map(values=>values.stringValue)
 
     for (let i = 0; i < myCartContent.length; i++) {
 
+      // .values.map(values=>values.stringValue)
       
 
       allChoosenProductsEl.innerHTML += 

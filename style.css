@@ -1,15 +1,3 @@
-/*Phone first*/
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -40,11 +28,11 @@
     }
 
     .article{
-        width: 27%;
+        width: 30%;
         box-shadow: 0 0 6px 3px #dda0dd;
         text-align: center;
         margin-bottom: 5em;
-        border-radius: 5px;
+        border-radius: 60px;
     }
 
     .img{
@@ -61,7 +49,7 @@
     }
 
     .button:hover{
-        font-size: 20px;
+        font-size: 23px;
     }
 
     nav li{
@@ -97,7 +85,7 @@
         width: 95%;
         color: white;
         background-color: plum;
-        border-radius: 5%;
+        border-radius: 50%;
         font-size: medium;
         
     }
@@ -199,7 +187,7 @@
         width: 110%;
         box-shadow: 0 0 6px 3px #dda0dd;
         margin-bottom: 5em;
-        border-radius: 15px;
+        border-radius: 45px;
     }
     
     .sectionAdmin{
@@ -254,5 +242,93 @@
         border-radius: 15px;
     }
 
+    .emptyText{
+        margin: 0 auto;
+       font-size: x-large;
+       text-decoration: underline;
+       text-align: center;
+    }
+
+    .iconTrash:hover{
+        background-color: #dda0dd;
+        border-radius: 10%;
+        width: 15%;
+        font-size: large;
+    }
    
+    .imageLogo{
+        width: 500px;
+    }
+
+    .imageLogoAdmin{
+        width: 500px;
+    }
+
+    .imagelogoCheckout{
+        width: 500px;
+    }
+
+    #menSection{
+      
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+       
+    }
+
+    .articleMens{
+        width: 30%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        text-align: center;
+        margin-bottom: 5em;
+        border-radius: 60px;
+    }
+
+    #womenSection{
+      
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+       
+    }
+
+    .articleWomens{
+        width: 30%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        text-align: center;
+        margin-bottom: 5em;
+        border-radius: 60px;
+    }
+
+    #jewelry2{
+      
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+       
+    }
+
+    .articleJewelry{
+        width: 30%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        text-align: center;
+        margin-bottom: 5em;
+        border-radius: 60px;
+    }
+
+    #electronicSection{
+      
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+       
+    }
+
+    .articleElectronic{
+        width: 30%;
+        box-shadow: 0 0 6px 3px #dda0dd;
+        text-align: center;
+        margin-bottom: 5em;
+        border-radius: 60px;
+    }
 }

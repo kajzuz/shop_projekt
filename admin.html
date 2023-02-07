@@ -11,15 +11,15 @@
     <header class="admin">
         <h1>
             <a href="index.html">
-                <img src="images/logoShopup.png" alt="logo slogan" width="500px">
+                <img class="imageLogoAdmin" src="images/logoShopup.png" alt="logo slogan">
             </a>
         </h1>
     </header>
 
     <br><br>
 
-    <div class="parentAdmin">
     <!-- The form on admin site for user to update information -->
+    <div class="parentAdmin">
     <form class="formAdmin"> 
         <strong>Update your information:</strong>
         <br><br>
@@ -40,21 +40,23 @@
         <input type="text" name="ProductId" id="ProductIds" placeholder="Enter id here...">
         <br><br>
 
-        <label for="Shipping">Delivery way:</label>
+        <label for="ShippingAdmin">Shipping:</label>
         <br>
         <select name="delivery" id="ShippingAdmin">
-            <option value="" disabled selected>Delivery</option>
+
+            <option value="" disabled selected>Shipping</option>
             <option value="Fedex Express (standard delivery)">Fedex</option>
             <option value="UPS (Arriving between 9-11 PM today)">UPS</option>
             <option value="DHL Express (Arriving between 2-3 days)">DHL Express</option>
             <option value="EasyPost (Arriving between 2-3 weeks)">EasyPost</option>
+            
         </select>
     </form>
     </div>
 
 
-    <br><br>
     <!-- The container for all information in js that is printed out on the webbsite -->
+    <br><br>
     <div class="sectionAdmin">
     <section id="allChoosenProducts">
     
