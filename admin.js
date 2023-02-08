@@ -41,11 +41,11 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
     const Email = EmailEl2.value;
     const Adress = AdressEl2.value;
     const productId = ProductIdsEl.value;
-    const deliveryAdmin = ShippingAdminEl.value;
+    const ShippingAdmin = ShippingAdminEl.value;
     
 
 
-      const body = JSON.stringify({
+      const body = {
       
         "fields": {
           "Adress": {
@@ -58,7 +58,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             "stringValue": Email
           }, 
           "Shipping": {
-            "stringValue": deliveryAdmin
+            "stringValue": ShippingAdmin
           },
           "idProducts": {
             "arrayValue": {
@@ -71,7 +71,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
           }
 
       }
-    })
+    }
     
     
     
@@ -81,7 +81,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: body
+            body: JSON.stringify(body)
            
         })
             .then(res => res.json())
@@ -91,9 +91,9 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             console.log("Updated");
 
            
-        setTimeout(function(){
-          location.reload();
-        }, 500);
+            setTimeout(function(){
+              location.reload();
+            }, 500);
         
     
         }

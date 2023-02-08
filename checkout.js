@@ -56,7 +56,7 @@ if (localStorage.products) {
   }
 
 
-    sectionPriceEl.innerHTML += ` <h3> Your total price: </h3> <strong class="totalPrice">$ ${price.toFixed(2)} dollar </strong><br><br> 
+    sectionPriceEl.innerHTML += `<h3> Your total price: </h3> <strong class="totalPrice">$ ${price.toFixed(2)} dollar </strong><br><br> 
     `
 
 
@@ -117,6 +117,7 @@ if (localStorage.products) {
     const Adress = AdressEl.value;
     const shipping = shippingEl.value;
     
+    
     //allArrayItems gets the value of every id from the original array
     //Save our users values as a object in our variable myFieldData that we later convert to 
     //string format so we can save it in the database
@@ -173,7 +174,8 @@ if (localStorage.products) {
         localStorage.clear();
 
         //Clear the site and replacing in with a nice message
-        bodyCheckouteEl.innerHTML = `<h4 class="endText">Thank you for shopping at shoppingflex <br> Your order has been registrered!</h4>` ;
+        bodyCheckouteEl.innerHTML = `<h4 class="endText">Thank you for shopping at shoppingflex <br> Your order has been registrered!
+        <br><br><a class="policyLink" href="policy.html">Read more about out return policy</a></h4>` ;
         
     }
 

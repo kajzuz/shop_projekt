@@ -277,6 +277,8 @@ fetch("https://fakestoreapi.com/products")
 
 function myFunction(output){
 
+  
+
   console.log(output);
 
   let all = output;

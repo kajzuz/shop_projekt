@@ -4,6 +4,7 @@
 /*Desktop*/
 @media screen and (min-width: 800px){
 
+
     header {
         text-align: center;
     }
@@ -334,5 +335,24 @@
 
     .rating{
         color: #8b8888;
+    }
+
+    .policy{
+        text-align: center;
+    }
+
+    .imagelogoPolicy{
+        width: 500px;
+    }
+
+
+    .bodyP{
+        text-align: center;
+    }
+
+    .textP{
+       margin: 0 auto;
+       width:50%;
+       line-height: 150%;
     }
 }
