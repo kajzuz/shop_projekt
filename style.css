@@ -331,4 +331,8 @@
         margin-bottom: 5em;
         border-radius: 60px;
     }
+
+    .rating{
+        color: #8b8888;
+    }
 }

@@ -9,9 +9,6 @@ const ProductIdsEl = document.getElementById("ProductIds");
 const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
 
-
-
-
   //---DELETE---
   //Removing user or order if needed
   function remove(id){
@@ -96,17 +93,25 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
            
         setTimeout(function(){
           location.reload();
-        }, 300);
+        }, 500);
         
     
         }
 
 
 
-//All content orders from API, this print out all that is stored in the (database)
+        //Creating date to use in my orders
+        let myDate = new Date();
+        let day = myDate.getDate();
+        let month = myDate.getMonth() + 1;
+        let year = myDate.getFullYear();
+        
+
+//All content orders from my databse i firestore, this prints out all that is stored in the (database)
 fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop")
 .then(result => result.json())
-.then(data => myCart(data));
+.then(data => myCart(data))
+.catch(error =>console.log(error));
 
 
 function myCart(data){
@@ -127,7 +132,9 @@ function myCart(data){
         `
       
         <article class="adminJs">
+        <br>
         <strong>Order id: <br></strong> ${myCartContent[i].name} <br><br>
+        <strong>Order date: <br></strong> ${year + "/" + month + "/" + day} <br><br>
         <strong>Name: </strong>${myCartContent[i].fields.Name.stringValue}<br><br>
         <strong>Email: </strong> ${myCartContent[i].fields.Email.stringValue}<br><br>
         <strong>Adress: </strong>${myCartContent[i].fields.Adress.stringValue}<br><br>
