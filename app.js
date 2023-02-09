@@ -121,7 +121,8 @@ count();
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong ><br>Product id: ${output[i].id}</strong><br>
-      <strong class="rating"><br>rating: ${output[i].rating.rate} / 5</strong>
+      <strong class="rating"><br>Rating: ${output[i].rating.rate} / 5</strong><br>
+      <strong class="ratingCount"><br>Rating count: ${output[i].rating.count}</strong>
       <br><br>
       </article>
 
@@ -169,7 +170,8 @@ count();
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong ><br>Product id: ${output[i].id}</strong><br>
-      <strong class="rating"><br>rating: ${output[i].rating.rate} / 5</strong>
+      <strong class="rating"><br>Rating: ${output[i].rating.rate} / 5</strong><br>
+      <strong class="ratingCount"><br>Rating count: ${output[i].rating.count}</strong>
       <br><br>
       </article>
 
@@ -214,7 +216,8 @@ count();
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong ><br>Product id: ${output[i].id}</strong><br>
-      <strong class="rating"><br>rating: ${output[i].rating.rate} / 5</strong>
+      <strong class="rating"><br>Rating: ${output[i].rating.rate} / 5</strong><br>
+      <strong class="ratingCount"><br>Rating count: ${output[i].rating.count}</strong>
       <br><br>
       </article>
 
@@ -259,7 +262,8 @@ count();
       <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
       onclick="addToCart('${output[i].id}', '${output[i].title.replace("'","")}', '${output[i].image}', '${output[i].price}');  yourTotalCost()"></p>
       <strong ><br>Product id: ${output[i].id}</strong><br>
-      <strong class="rating"><br>rating: ${output[i].rating.rate} / 5</strong>
+      <strong class="rating"><br>Rating: ${output[i].rating.rate} / 5</strong><br>
+      <strong class="ratingCount"><br>Rating count: ${output[i].rating.count}</strong>
       <br><br>
       </article>
 
@@ -305,7 +309,8 @@ function myFunction(output){
         <p><input class="button" type="button" value="Add to cart" id="BuyButton" 
         onclick="addToCart('${all[i].id}', '${all[i].title.replace("'","")}', '${all[i].image}', '${all[i].price}');  yourTotalCost()"></p>
         <strong ><br>Product id: ${output[i].id}</strong><br>
-        <strong class="rating"><br>rating: ${output[i].rating.rate} / 5</strong>
+        <strong class="rating"><br>Rating: ${output[i].rating.rate} / 5</strong><br>
+        <strong class="ratingCount"><br>Rating count: ${output[i].rating.count}</strong>
         <br><br>
         </article>
 
