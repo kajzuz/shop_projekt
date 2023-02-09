@@ -174,7 +174,7 @@ if (localStorage.products) {
         localStorage.clear();
 
         //Clear the site and replacing in with a nice message
-        bodyCheckouteEl.innerHTML = `<h4 class="endText">Thank you for shopping at shoppingflex <br> Your order has been registrered!
+        bodyCheckouteEl.innerHTML = `<h4 class="endText">Thank you for shopping at shoppingflex <br> Your order has been registered!
         <br><br><a class="policyLink" href="policy.html">Read more about out return policy</a></h4>` ;
         
     }

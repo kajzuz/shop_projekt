@@ -30,6 +30,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
     
     }
 
+   
 
 
     //---PATCH---
@@ -42,6 +43,16 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
     const Adress = AdressEl2.value;
     const productId = ProductIdsEl.value;
     const ShippingAdmin = ShippingAdminEl.value;
+    
+
+    if (
+      NameEl2.value.length > 0 &&
+      EmailEl2.value.length >0 &&
+      AdressEl2.value.length > 0 &&
+      ProductIdsEl.value.length > 0 &&
+      ShippingAdminEl.value
+    ) {
+      
     
 
 
@@ -96,9 +107,11 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             }, 500);
         
     
+        }else{
+          alert("All fields is required!");
         }
 
-
+      }
 
         //Creating date to use in my orders
         let myDate = new Date();
