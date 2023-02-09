@@ -38,7 +38,7 @@ function yourTotalCost(){
 //other wise the array is empty
 let arrayItems = JSON.parse(localStorage.getItem("products")) || []
 
-//Making a array and push the products into it
+//push the products into my array 
 //as well as converting it to JSON with stringlify, and count amount of products in cart
 function addToCart(id, title, image, price) {
 
@@ -276,7 +276,7 @@ count();
 
 
 //---GET---
-//GET (Read), reading in all information from the fakeshop API, and adding to cart
+//GET (Read), reading in all information from the fakeshop API, and adding to cart 'onklick'
 fetch("https://fakestoreapi.com/products")
 .then(result => result.json())
 .then(data => myFunction(data))

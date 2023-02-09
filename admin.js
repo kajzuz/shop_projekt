@@ -10,7 +10,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
 
 
   //---DELETE---
-  //Removing user or order if needed
+  //Removing order if needed
   function remove(id){
 
 
@@ -24,6 +24,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
         
         console.log("Deleted!");
         
+        //Reload webbsite after order is deleted
         setTimeout(function(){
           location.reload();
       }, 300);
@@ -101,7 +102,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
             
             console.log("Updated");
 
-           
+           //Reload webbsite after order is updated
             setTimeout(function(){
               location.reload();
             }, 500);
@@ -120,7 +121,7 @@ const ShippingAdminEl = document.getElementById("ShippingAdmin");
         let year = myDate.getFullYear();
         
 
-//All content orders from my databse i firestore, this prints out all that is stored in the (database)
+//All orders from my databse in firestore, this prints out all that is stored in the (database)
 fetch("https://firestore.googleapis.com/v1/projects/myshop-aa824/databases/(default)/documents/myShop")
 .then(result => result.json())
 .then(data => myCart(data))
@@ -137,7 +138,6 @@ function myCart(data){
 
     for (let i = 0; i < myCartContent.length; i++) {
 
-      // .values.map(values=>values.stringValue)
       
 
       allChoosenProductsEl.innerHTML += 

@@ -106,7 +106,7 @@ if (localStorage.products) {
 
 
   //---POST---
-  //Funktion POST (create), add user and product information (AJAX)
+  //Funktion POST (create)
   function buy(){
   
 
@@ -173,7 +173,7 @@ if (localStorage.products) {
         //Clear localstorage when placing a order "reset"
         localStorage.clear();
 
-        //Clear the site and replacing in with a nice message
+        //Clear the site and replacing in with a nice message and policy link
         bodyCheckouteEl.innerHTML = `<h4 class="endText">Thank you for shopping at shoppingflex <br> Your order has been registered!
         <br><br><a class="policyLink" href="policy.html">Read more about out return policy</a></h4>` ;
         
